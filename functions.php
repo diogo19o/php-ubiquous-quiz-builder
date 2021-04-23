@@ -68,9 +68,25 @@ function get_all_respostas($pdo){
 	return $all_respostas;
 }
 function create_database_connection(){
+
+	//localhost
+	/*
+	$host = 'localhost';
+	$db = 'androidquizbuilder';
+	$user = 'root';
+	$pass = '';
+	*/
+
+	//Remote MySQL DB
+	$host = 'remotemysql.com';
+	$db = 'lp85STgz2h';
+	$user = 'lp85STgz2h';
+	$pass = 'xhOf7xYXsQ';
+
+	$dsn = "mysql:host=$host;dbname=$db";
+
 	try {
-		//local DB WampServer
-	    $pdo = new PDO('mysql:host=localhost;dbname=androidquizbuilder', 'root', '');
+	    $pdo = new PDO($dsn, $user, $pass);
 		//$pdo = new PDO('mysql:host=localhost;dbname=androidquizbuilder', 'root', '');
 	    return $pdo;
 	} catch (PDOException $e) {
