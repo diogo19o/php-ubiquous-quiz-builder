@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>AndroidQuizBuilder</title>
+<title>UbiquousQuizBuilder</title>
     <meta charset=utf-8">
 <link rel='stylesheet' href='style.css'/>
 <head>
@@ -12,7 +12,7 @@ $pdo = create_database_connection();
 
 ?>
 <div class='container'>
-<h1>AndroidQuizBuilder</h1>
+<h1>UbiquousQuizBuilder</h1>
 </div>
 </body>
 </html>

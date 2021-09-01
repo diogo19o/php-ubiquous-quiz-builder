@@ -6,6 +6,7 @@ $perguntas = get_all_perguntas($pdo);
 $respostas = get_all_respostas($pdo);
 $users = get_all_users($pdo);
 $resultados = get_all_resultados($pdo);
+$imagens = get_all_imagens($pdo);
 
 $action = $_GET["action"];
  if ($action == "questionarios") {
@@ -18,6 +19,27 @@ $action = $_GET["action"];
     echo(json_encode(array('resultados' => $resultados)));
 } else if ($action == "utilizadores") {
     echo(json_encode(array('utilizadores' => $users)));
+} else if($action == "imagem"){
+    $NomeImagem = $_GET['imageName'];
+    //$PerguntaID = $_GET['PerguntaID'];
+    try {
+        $statement = $pdo->prepare("SELECT FileData FROM imagens WHERE FileName=:ImageName");
+        $statement->bindParam(':ImageName', $NomeImagem);
+        $statement->execute();
+        $imagensDosQuestionarios = $statement->fetchAll();
+    } catch (Exception $ex) { echo $ex->getMessage(); }
+    
+    foreach($imagensDosQuestionarios as $key => $field){
+        $imagensDosQuestionarios[$key]['FileData'] = base64_encode($imagensDosQuestionarios[$key]['FileData']);
+    }
+    $imagemBase64 = $imagensDosQuestionarios[0]['FileData'];
+    echo(json_encode(array('imagem' => $imagemBase64)));
+    //echo(json_encode($imagensDosQuestionarios[0]['QuestionarioID']));
+    //echo(count($imagensDosQuestionarios));
+    //echo($imagensDosQuestionarios[0]['FileData']);
+    //echo($imagemBase64);
+    //echo(json_encode($imagensDosQuestionarios));
+    
 }
  else if ($action == "rankings")
 {
@@ -59,7 +81,7 @@ $action = $_GET["action"];
     $id = sizeof($resultados) + 1;
     $respondidas = $corretas + $erradas + 1;
     $data = date("Y-m-d");
-    print($respondidas);
+    print("Sucesso");
     $statement = $pdo->prepare("INSERT INTO resultados VALUES(:resultadoID,:certas,:erradas,:score,:respondidas,:utilizadorID,:questionarioID,:modo,:data)");
     $statement->bindParam(':resultadoID', $id);
     $statement->bindParam(':certas', $corretas);

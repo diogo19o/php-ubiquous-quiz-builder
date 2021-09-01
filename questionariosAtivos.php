@@ -16,13 +16,7 @@ $questionarios = get_all_questionarios($pdo);
 <div class='container'>
     <h1>Questionários ativos:</h1>
     <?php
-    $qtd = 0;
-    foreach ($questionarios as $questionario) {
-        if ($questionario['UserCriacao'] != $my_id) {
-            $qtd = 1;
-        }
-    }
-    if ($qtd == 1) {
+    if (count($questionarios) > 0) {
     ?>
     <table style="margin-top: 15px" border="1" id="myTable">
         <tr>
