@@ -62,19 +62,15 @@
                         $id_pergunta = $qtd_perguntas + 1; 
                         $resposta = 1;
                         if ($_FILES['imagem']['size'] == 0 && $_FILES['imagem']['error'] == 4) {
-                            $statement = $pdo->prepare("INSERT INTO `pergunta` (`PerguntaID`,`Texto`,`Resposta`,`QuestionarioID`) VALUES (?,?,?,?)");
-                            $statement->execute([$id_pergunta,$_POST['texto'],$resposta, $questionarioID]);
-                            echo "guardou pergunta 1";
+                            try{
+                                $statement = $pdo->prepare("INSERT INTO `pergunta` (`PerguntaID`,`Texto`,`Resposta`,`QuestionarioID`) VALUES (?,?,?,?)");
+                                $statement->execute([$id_pergunta,$_POST['texto'],$resposta, $questionarioID]);
+                            } catch (Exception $ex) { echo $ex->getMessage(); }
                         }else{
                             try {
-                                $stmt = $pdo->prepare("INSERT INTO `imagens` (`QuestionarioID`,`PerguntaID`,`FileName`, `FileData`) VALUES (?,?,?,?)");
-                                $stmt->execute([$questionarioID,$id_pergunta,$_FILES["imagem"]["name"], file_get_contents($_FILES['imagem']['tmp_name'])]);
-                                echo "OK";
-                            } catch (Exception $ex) { echo $ex->getMessage(); }
-                            try {
-                                $statement = $pdo->prepare("INSERT INTO `pergunta` (`PerguntaID`,`Texto`,`Resposta`,`QuestionarioID`,`NomeImagem`) VALUES (?,?,?,?,?)");
-                                $statement->execute([$id_pergunta,$_POST['texto'],$resposta, $questionarioID,$_FILES["imagem"]["name"]]);
-                                echo "guardou pergunta 2";
+                                $imageBase64 = base64_encode(file_get_contents($_FILES['imagem']['tmp_name']));
+                                $statement = $pdo->prepare("INSERT INTO `pergunta` (`PerguntaID`,`Texto`,`Resposta`,`QuestionarioID`,`Imagem`) VALUES (?,?,?,?,?)");
+                                $statement->execute([$id_pergunta,$_POST['texto'],$resposta, $questionarioID,$imageBase64]);
                             } catch (Exception $ex) { echo $ex->getMessage(); }
                         }
 
@@ -94,7 +90,6 @@
                             $statement->bindParam(':PerguntaID', $id_pergunta);
                             $statement->execute();
                         }
-
                         $qtd_pergunta++;
                     } else {
                         $message = "As respostas têm de ser todas diferentes";
@@ -103,32 +98,33 @@
                     $message = "O titulo da pergunta nao é válido";
                 }
             } else {
-                $message = "Tem que have no mínimo 3 respostas por pergunta";
+                $message = "Cada pergunta tem que ter no mínimo 3 respostas";
             }
         }
         if (isset($_POST['acabar'])) {
             if ($qtd_pergunta > 2) {
                 header('location: questionariosAtivos.php');
             } else {
-                $message = "Tem que ter no mínimo 2 perguntas";
+                $message = "Para o questionário ser válido, têm que haver no mínimo 2 perguntas";
             }
         }
         if ($message != "") {
-            echo "<div class='box'>$message</div>";
+            echo "<div class='erro'>$message</div><br>";
         }
         ?>
         <html>
         <body>
             <form action="" method="post" enctype="multipart/form-data">
                 <?php
-                echo "<h3>Insira as suas perguntas e as respetivas respostas : </h3>";
-                echo "<h3>Pergunta $qtd_pergunta:</h3>";
+                echo "<h1>Insira as suas perguntas e as respetivas respostas : </h1>";
+                echo "<h2>Pergunta $qtd_pergunta:</h2>";
                 ?>
-                <input type="text" name="texto" autocomplete="off" size="100">
+                <textarea name="texto" class="caixa_descricao" rows="1" cols="60"></textarea>
+        
                 <?php
                 echo "<h3>Insira as respetivas respostas(mínimo 3 respostas): </h3>";
                 ?>
-                <table border="1">
+                <table border="1" style="table-layout:fixed;">
                     <tr>
                         <td align="middle" width="392">Resposta Texto</td>
                         <td align="middle" width="150">Resposta Certa</td>
@@ -152,10 +148,20 @@
                 <input type='text' name='resposta6texto' autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
                 <input type="radio" id="resposta6" name="radio" value="resposta6">
                 <br>
-                <input type="file" name="imagem" accept=".png,.jpg,.jpeg"/>
-            <input type='submit' name='submit' style="background: #3366ff" value='Inserir'> <input type='submit' name='acabar' style="background: #3366ff" value='Finalizar'> <?php
-                echo "<a href='editarSeusQuestionarioEscolha.php?questionario=$questionarioID' class='box' >Voltar</a>";
+                <br>
+                <?php
+                echo "<h3>Se quiser que esta pergunta mostre uma imagem, insira em baixo:</h3>";
                 ?>
+                <input type="file" name="imagem" style="margin-right: 50px" accept=".png,.jpg,.jpeg"/>
+                <br>
+                <input type='submit' name='submit' style="background: #3366ff" value='Inserir Pergunta'> 
+                <br>
+                <br>
+                <br>
+                <?php
+                echo "<a href='editarSeusQuestionarioEscolha.php?questionario=$questionarioID' class='box' >Cancelar</a>";
+                ?>
+                <input type='submit' name='acabar' style="background: #3366ff" value='Submeter Questionário'> 
             </form>
         </body>
         </html>

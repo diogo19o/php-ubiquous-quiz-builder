@@ -15,17 +15,21 @@ $pdo = create_database_connection();
         <h2>Insira a informação do novo utilizador:</h2><br>
         <?php
         $message="";
-        $emailexiste=0;
+        $emailExiste=0;
+        $nomeExiste=0;
         if (isset($_POST['submit'])) {
             if((!empty($_POST['nome']))&&(!empty($_POST['email']))&&(!empty($_POST['password']))){
                 $users=get_all_users($pdo);
                 foreach($users as $user){
                     if($user['email']==$_POST['email']){
-                        $message="Já exsite uma conta registada com este email";
-                        $emailexiste=1;
+                        $message="Já existe uma conta registada com este email";
+                        $emailExiste=1;
+                    } else if($user['nome']==$_POST['nome']){
+                        $message="Já existe uma conta registada com este nome";
+                        $nomeExiste=1;
                     }
                 }
-                if($emailexiste==0){
+                if($emailExiste == 0 && $nomeExiste == 0){
                     $password = sha1($_POST['password']);
                     $id=0;
                     $tipo=0;
@@ -37,12 +41,11 @@ $pdo = create_database_connection();
                     $statement->bindParam(':password',$password);
                     $statement->bindParam(':tipo',$tipo);
                     $statement->execute();
-                    $message="Foi registado com sucesso";
+                    $message="Conta registada com sucesso";
                     header("location: login.php");
-
                 }
             }else{
-                $message="Por favor preencha todos os campos";
+                $message="Por favor, preencha todos os campos";
             }
         }
         if($message!=''){

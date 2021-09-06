@@ -1,23 +1,22 @@
 <?php
 include 'functions.php';
 $pdo = create_database_connection();
-$questionarios = get_all_questionarios($pdo);
-$perguntas = get_all_perguntas($pdo);
-$respostas = get_all_respostas($pdo);
-$users = get_all_users($pdo);
-$resultados = get_all_resultados($pdo);
-$imagens = get_all_imagens($pdo);
 
 $action = $_GET["action"];
  if ($action == "questionarios") {
+    $questionarios = get_all_questionarios($pdo);
     echo(json_encode(array('questionarios' => $questionarios)));
 } else if ($action == "perguntas") {
+    $perguntas = get_all_perguntas($pdo);
     echo(json_encode(array('perguntas' => $perguntas)));
 } else if ($action == "respostas") {
+    $respostas = get_all_respostas($pdo);
     echo(json_encode(array('respostas' => $respostas)));
 } else if ($action == "resultados") {
+    $resultados = get_all_resultados($pdo);
     echo(json_encode(array('resultados' => $resultados)));
 } else if ($action == "utilizadores") {
+    $users = get_all_users($pdo);
     echo(json_encode(array('utilizadores' => $users)));
 } else if($action == "imagem"){
     $NomeImagem = $_GET['imageName'];
@@ -34,6 +33,7 @@ $action = $_GET["action"];
     }
     $imagemBase64 = $imagensDosQuestionarios[0]['FileData'];
     echo(json_encode(array('imagem' => $imagemBase64)));
+    
     //echo(json_encode($imagensDosQuestionarios[0]['QuestionarioID']));
     //echo(count($imagensDosQuestionarios));
     //echo($imagensDosQuestionarios[0]['FileData']);
@@ -67,6 +67,8 @@ $action = $_GET["action"];
     echo(json_encode(array('respostasDaPergunta' => $respostasDaPergunta)));
 }
  else if ($action == "resultado") {
+    $resultados = get_all_resultados($pdo);
+    $users = get_all_users($pdo);
     $corretas = $_POST['certas'];
     $erradas = $_POST['erradas'];
     $modo = $_POST['modo'];

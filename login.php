@@ -1,8 +1,8 @@
 <html xmlns:font-size="http://www.w3.org/1999/xhtml">
 <head>
 <title>Login</title>
-<link rel='stylesheet' href='style.css'/>
-    <meta charset=utf-8">
+<link rel="stylesheet" type="text/css" href="style.css?ver=<?php echo filemtime('style.css');?>">
+    <meta charset=utf-8>
 </head>
 <body>
 <?php 
@@ -14,7 +14,7 @@ if(!loggedin()){
 ?>
 <div class='container'>
     <div class="container_login">
-        <h1 style="text-align: center">Login</h1>
+        <h1>Login</h1>
         <form method='post'>
             <?php
             if (isset($_POST['submit'])) {
@@ -48,10 +48,10 @@ if(!loggedin()){
             ?>
             <br><br>
             <h3>Username:<br/></h3>
-            <input type='text' name='username' autocomplete="off" size="30" />
+            <input type='text' name='username' autocomplete="off" size="25" />
             <br/><br/>
             <h3>Password:<br/></h3>
-            <input type='password' name='password' size="30"/>
+            <input type='password' name='password' size="25"/>
             <br/><br/><br>
             <input type='submit' name='submit' class="search" value='Login' style="background-color: #3366ff">
         </form>

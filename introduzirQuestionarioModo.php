@@ -35,7 +35,8 @@ $pdo = create_database_connection();
                 <option value="morte_subita">Morte Súbita</option>
             </select>
         </p>
-        <input type='submit' name='submit' value='Escolher Modo de Jogo' class="boxBom" style="width: 9%">
+        <br>
+        <input type='submit' name='submit' value='Escolher Modo de Jogo' class="boxBom" >
     </form>
     <a href='questionariosAtivos.php' class='box'>Voltar</a>
 </div>
