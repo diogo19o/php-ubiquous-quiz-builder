@@ -47,7 +47,7 @@ if(isset($action)){
 				}
 			}
 		}
-
+		
 		/*
 		$users = get_all_users($pdo);
 		foreach($users as $user){

@@ -48,7 +48,7 @@
             <br/><br/><?php
             if ($modo == "contra_relogio") {
                 ?>
-                Tempo total do Questionario :<br/><br>
+                Tempo total do questionário :<br/><br>
                 Minutos:
                 <input type="text" name="timer" size="1" value="0" class="tempo">
                 Segundos:
