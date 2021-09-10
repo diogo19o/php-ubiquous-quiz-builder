@@ -154,6 +154,7 @@
                 ?>
                 <input type="file" name="imagem" style="margin-right: 50px" accept=".png,.jpg,.jpeg"/>
                 <br>
+                <br>
                 <input type='submit' name='submit' style="background: #3366ff" value='Inserir Pergunta'> 
                 <br>
                 <br>

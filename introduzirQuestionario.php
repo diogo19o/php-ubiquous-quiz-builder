@@ -40,7 +40,7 @@
                 </select>
             </p>
             Título:<br/>
-            <input type="text" name="titulo" size="33" autocomplete="off">
+            <input type="text" name="titulo" size="33" autocomplete="off" class="claro">
             
             <br/><br/>
             Descrição:<br/>
