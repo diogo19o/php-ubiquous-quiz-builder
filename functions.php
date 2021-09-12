@@ -86,17 +86,27 @@ function get_all_imagens($pdo){
 function create_database_connection(){
 
 	//localhost
-	//$host = 'localhost';
-	//$db = 'ubiquousquizbuilder';
-	//$user = 'root';
-	//$pass = '';
+	/*
+	$host = 'localhost';
+	$db = 'ubiquousquizbuilder';
+	$user = 'root';
+	$pass = '';
+	*/
 
 	//Remote MySQL DB
-	
+	/*
 	$host = 'remotemysql.com';
 	$db = 'lp85STgz2h';
 	$user = 'lp85STgz2h';
 	$pass = 'xhOf7xYXsQ';
+	*/
+
+	//Remote MySQL DB
+	
+	$host = 'sql11.freemysqlhosting.net';
+	$db = 'sql11436096';
+	$user = 'sql11436096';
+	$pass = 'VGSpMAFWWP';
 	
 
 	$dsn = "mysql:host=$host;dbname=$db";
