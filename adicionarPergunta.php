@@ -14,7 +14,7 @@
     
     <div class='container'>
         <?php
-        $qtd = 3;
+        /*$qtd = 3;
         $message = "";
         $questionarioID = $_GET['questionario'];
         $qtd_pergunta = sizeof(get_perguntas_by_questionario($pdo, $questionarioID)) + 1;
@@ -111,14 +111,14 @@
         }
         if ($message != "") {
             echo "<div class='erro'>$message</div><br>";
-        }
+        }*/
         ?>
         <html>
         <body>
             <form action="" method="post" enctype="multipart/form-data">
                 <?php
                 echo "<h1>Insira as suas perguntas e as respetivas respostas : </h1>";
-                echo "<h2>Pergunta $qtd_pergunta:</h2>";
+                //echo "<h2>Pergunta $qtd_pergunta:</h2>";
                 /*?>
                 <textarea name="texto" class="caixa_descricao" rows="1" cols="60"></textarea>
         
