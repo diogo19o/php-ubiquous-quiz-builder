@@ -14,7 +14,7 @@
     
     <div class='container'>
         <?php
-        /*$qtd = 3;
+        $qtd = 3;
         $message = "";
         $questionarioID = $_GET['questionario'];
         $qtd_pergunta = sizeof(get_perguntas_by_questionario($pdo, $questionarioID)) + 1;
@@ -22,7 +22,7 @@
         $qtd_respostas = sizeof(get_all_respostas($pdo));
         $qtd_imagens = sizeof(get_all_imagens($pdo));
         $my_id = $_SESSION['user_id'];
-        if (isset($_POST['submit'])) {
+        /*if (isset($_POST['submit'])) {
             $resposta11 = $_POST['resposta1texto'];
             $resposta22 = $_POST['resposta2texto'];
             $resposta33 = $_POST['resposta3texto'];
