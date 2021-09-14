@@ -3,7 +3,7 @@
 <head>
     <title>Inserir nova pergunta</title>
     <link rel='stylesheet' href='style.css'/>
-    <meta charset=utf-8">
+    <meta charset=utf-8>
 <head>
 <body>
     <?php
@@ -11,6 +11,7 @@
     include 'header.php';
     $pdo = create_database_connection();
     ?>
+    
     <div class='container'>
         <?php
         $qtd = 3;
