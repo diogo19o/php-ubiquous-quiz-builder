@@ -19,8 +19,8 @@
         $questionarioID = $_GET['questionario'];
         $qtd_pergunta = sizeof(get_perguntas_by_questionario($pdo, $questionarioID)) + 1;
         $qtd_perguntas = sizeof(get_all_perguntas($pdo));
-        /*$qtd_respostas = sizeof(get_all_respostas($pdo));
-        $qtd_imagens = sizeof(get_all_imagens($pdo));
+        $qtd_respostas = sizeof(get_all_respostas($pdo));
+        /*$qtd_imagens = sizeof(get_all_imagens($pdo));
         $my_id = $_SESSION['user_id'];
         if (isset($_POST['submit'])) {
             $resposta11 = $_POST['resposta1texto'];
