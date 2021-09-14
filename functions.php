@@ -76,13 +76,6 @@ function get_all_respostas($pdo){
 	return $all_respostas;
 }
 
-function get_all_imagens($pdo){
-	$statement = $pdo->prepare("SELECT * FROM imagens");
-	$statement->execute();
-	$all_imagens = $statement->fetchAll();
-	return $all_imagens;
-}
-
 function create_database_connection(){
 
 	//localhost
