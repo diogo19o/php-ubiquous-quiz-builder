@@ -65,13 +65,13 @@
                         if ($_FILES['imagem']['size'] == 0 && $_FILES['imagem']['error'] == 4) {
                             try{
                                 $statement = $pdo->prepare("INSERT INTO `pergunta` (`PerguntaID`,`Texto`,`Resposta`,`QuestionarioID`) VALUES (?,?,?,?)");
-                                $statement->execute([$id_pergunta,$_POST['texto'],$resposta, $questionarioID]);
+                                $statement->execute([$id_pergunta,$texto,$resposta, $questionarioID]);
                             } catch (Exception $ex) { echo $ex->getMessage(); }
                         }else{
                             try {
                                 $imageBase64 = base64_encode(file_get_contents($_FILES['imagem']['tmp_name']));
                                 $statement = $pdo->prepare("INSERT INTO `pergunta` (`PerguntaID`,`Texto`,`Resposta`,`QuestionarioID`,`Imagem`) VALUES (?,?,?,?,?)");
-                                $statement->execute([$id_pergunta,$_POST['texto'],$resposta, $questionarioID,$imageBase64]);
+                                $statement->execute([$id_pergunta,$texto,$resposta, $questionarioID,$imageBase64]);
                             } catch (Exception $ex) { echo $ex->getMessage(); }
                         }
 
@@ -119,7 +119,7 @@
                 <?php
                 echo "<h1>Insira as suas perguntas e as respetivas respostas : </h1>";
                 echo "<h2>Pergunta $qtd_pergunta:</h2>";
-                ?>
+                /*?>
                 <textarea name="texto" class="caixa_descricao" rows="1" cols="60"></textarea>
         
                 <?php
@@ -162,7 +162,7 @@
                 <br>
                 <?php
                 echo "<a href='editarSeusQuestionarioEscolha.php?questionario=$questionarioID' class='box' >Cancelar</a>";
-                ?>
+                */?>
                 <input type='submit' name='acabar' style="background: #3366ff" value='Submeter Questionário'> 
             </form>
         </body>
