@@ -56,7 +56,7 @@ $pdo = create_database_connection();
         <html>
         <body>
         <form action="" method="post">
-            <h3>Nome:</h3>
+            <h3>Username:</h3>
             <input type="text" class="claro" name="nome" size="30">
             <br/><br/>
             <h3>Email:</h3>
