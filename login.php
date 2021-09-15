@@ -76,10 +76,10 @@ if(!loggedin()){
             ?>
             <br><br>
             <h3>Username:<br/></h3>
-            <input type='text' name='username' autocomplete="off" size="25" />
+            <input type='text' class="claro" name='username' autocomplete="off" size="25" />
             <br/><br/>
             <h3>Password:<br/></h3>
-            <input type='password' name='password' size="25"/>
+            <input type='password' class="claro" name='password' size="25"/>
             <br/><br/><br>
             <input type='submit' name='submit' class="search" value='Login' style="background-color: #3366ff">
         </form>

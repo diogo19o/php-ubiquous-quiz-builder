@@ -57,13 +57,13 @@ $pdo = create_database_connection();
         <body>
         <form action="" method="post">
             <h3>Nome:</h3>
-            <input type="text" name="nome" size="30">
+            <input type="text" class="claro" name="nome" size="30">
             <br/><br/>
             <h3>Email:</h3>
-            <input type="Email" name="email" size="30">
+            <input type="Email" class="claro" name="email" size="30">
             <br/><br/>
             <h3>Password:</h3>
-            <input type="password" name="password" size="30">
+            <input type="password" class="claro" name="password" size="30">
             <br/><br/><br>
             <input type='submit' name='submit' value='Registar' class="search" style="background-color: #3366ff">
         </form>
