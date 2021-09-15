@@ -11,7 +11,7 @@ include 'header.php';
 $pdo = create_database_connection();
 ?>
 <div class='container'>
-	<div class="container_login">
+	<div class="container_register">
         <h2>Insira a informação do novo utilizador:</h2><br>
         <?php
         $message="";
@@ -25,7 +25,7 @@ $pdo = create_database_connection();
                         $message="Já existe uma conta registada com este email";
                         $emailExiste=1;
                     } else if($user['nome']==$_POST['nome']){
-                        $message="Já existe uma conta registada com este nome";
+                        $message="Já existe uma conta registada com este username";
                         $nomeExiste=1;
                     }
                 }
@@ -49,13 +49,13 @@ $pdo = create_database_connection();
             }
         }
         if($message!=''){
-            echo"<div class='box'>$message</div>";
+            echo"<div class='boxErrorLoginRegister'>$message</div>";
         }
 
         ?>
         <html>
         <body>
-        <form action="" method="post">
+        <form class="login" action="" method="post">
             <h3>Username:</h3>
             <input type="text" class="claro" name="nome" size="30">
             <br/><br/>

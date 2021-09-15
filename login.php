@@ -70,7 +70,7 @@ if(!loggedin()){
                     }
                 }
                 if($message!=''){
-                        echo"<div class='box'>$message</div>";
+                        echo"<div class='boxErrorLoginRegister'>$message</div>";
                 }
             }
             ?>
