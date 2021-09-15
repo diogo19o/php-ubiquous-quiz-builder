@@ -15,7 +15,7 @@ if(!loggedin()){
 <div class='container'>
     <div class="container_login">
         <h1>Login</h1>
-        <form method='post'>
+        <form class="login" method='post'>
             <?php
             if (isset($_POST['submit'])) {
                 $username=$_POST['username'];
@@ -76,10 +76,10 @@ if(!loggedin()){
             ?>
             <br><br>
             <h3>Username:<br/></h3>
-            <input type='text' class="claro" name='username' autocomplete="off" size="25" />
+            <input type='text' class="claro" name='username' autocomplete="off" size="30" />
             <br/><br/>
             <h3>Password:<br/></h3>
-            <input type='password' class="claro" name='password' size="25"/>
+            <input type='password' class="claro" name='password' size="30"/>
             <br/><br/><br>
             <input type='submit' name='submit' class="search" value='Login' style="background-color: #3366ff">
         </form>
