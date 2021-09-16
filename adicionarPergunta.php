@@ -119,8 +119,8 @@
                 echo "<h1>Insira as suas perguntas e as respetivas respostas : </h1>";
                 echo "<h2>Pergunta $qtd_pergunta:</h2>";
                 ?>
-                <textarea name="texto" class="caixa_descricao" rows="1" cols="60"></textarea>
-        
+                <textarea name="texto"  id="texto" class="caixa_descricao" rows="1" cols="60" ><?php if(isset($_POST['texto'])) {echo htmlentities($_POST['texto']);}?></textarea>
+
                 <?php
                 echo "<h3>Insira as respetivas respostas(mínimo 3 respostas): </h3>";
                 ?>
@@ -130,28 +130,28 @@
                         <td align="middle" width="150">Resposta Certa</td>
                     </tr>
                 </table>
-                <input type='text' name='resposta1texto' autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
-                <input type="radio" id="resposta1" name="radio" value="resposta1">
+                <input type='text' name='resposta1texto' value="<?php echo isset($_POST['resposta1texto']) ? $_POST['resposta1texto'] : ''; ?>" autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
+                <input type="radio" id="resposta1"  name="radio" value="resposta1" <?php if(isset($_POST['radio']) && $_POST['radio'] == 'resposta1')  echo ' checked="checked"';?>>
                 <br>
-                <input type='text' name='resposta2texto' autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
-                <input type="radio" id="resposta2" name="radio" value="resposta2">
+                <input type='text' name='resposta2texto' value="<?php echo isset($_POST['resposta2texto']) ? $_POST['resposta2texto'] : ''; ?>" autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
+                <input type="radio" id="resposta2" name="radio" value="resposta2" <?php if(isset($_POST['radio']) && $_POST['radio'] == 'resposta2')  echo ' checked="checked"';?>>
                 <br>
-                <input type='text' name='resposta3texto' autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
-                <input type="radio" id="resposta3" name="radio" value="resposta3">
+                <input type='text' name='resposta3texto' value="<?php echo isset($_POST['resposta3texto']) ? $_POST['resposta3texto'] : ''; ?>" autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
+                <input type="radio" id="resposta3" name="radio" value="resposta3" <?php if(isset($_POST['radio']) && $_POST['radio'] == 'resposta3')  echo ' checked="checked"';?>>
                 <br>
-                <input type='text' name='resposta4texto' autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
-                <input type="radio" id="resposta4" name="radio" value="resposta4">
+                <input type='text' name='resposta4texto' value="<?php echo isset($_POST['resposta4texto']) ? $_POST['resposta4texto'] : ''; ?>" autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
+                <input type="radio" id="resposta4" name="radio" value="resposta4" <?php if(isset($_POST['radio']) && $_POST['radio'] == 'resposta4')  echo ' checked="checked"';?>>
                 <br>
-                <input type='text' name='resposta5texto' autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
-                <input type="radio" id="resposta5" name="radio" value="resposta5">
+                <input type='text' name='resposta5texto' value="<?php echo isset($_POST['resposta5texto']) ? $_POST['resposta5texto'] : ''; ?>" autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
+                <input type="radio" id="resposta5" name="radio" value="resposta5" <?php if(isset($_POST['radio']) && $_POST['radio'] == 'resposta5')  echo ' checked="checked"';?>>
                 <br>
-                <input type='text' name='resposta6texto' autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
-                <input type="radio" id="resposta6" name="radio" value="resposta6">
+                <input type='text' name='resposta6texto' value="<?php echo isset($_POST['resposta6texto']) ? $_POST['resposta6texto'] : ''; ?>" autocomplete="off" class="boxPerguntas" style="margin-right: 70px"/>
+                <input type="radio" id="resposta6" name="radio" value="resposta6" <?php if(isset($_POST['radio']) && $_POST['radio'] == 'resposta6')  echo ' checked="checked"';?>>
                 <br>
                 <br>
                 <?php
                 echo "<h3>Se quiser que esta pergunta mostre uma imagem, insira em baixo:</h3>";
-                ?>
+                ?>        
                 <input type="file" name="imagem" style="margin-right: 50px" accept=".png,.jpg,.jpeg"/>
                 <br>
                 <br>

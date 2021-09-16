@@ -14,73 +14,9 @@
     include 'functions.php';
     include 'header.php';
     $pdo = create_database_connection();
-    ?>
-    <div class='container'>
-        <h1>Introduza as Seguites Informações:<br></h1>
-        <?php
-        $message = "";
-        $my_id = $_SESSION['user_id'];
-        $modo = $_GET['modo'];
-        if ($modo == "contra_relogio") {
-            echo "<h2>Modo: Contra Relógio</h2>";
-        } else if ($modo == "morte_subita") {
-            echo "<h2>Modo: Morte Súbita</h2>";
-        } else if ($modo == "questionario") {
-            echo "<h2>Modo: Questionário</h2>";
-        } else if ($modo == "classico") {
-            echo "<h2>Modo: Clássico</h2>";
-        }
-        ?>
-        <form action="" method="post">
-            Acesso:<br/>
-            <p>
-                <select name="acesso">
-                    <option value="publico">Publico</option>
-                    <option value="privado">Privado</option>
-                </select>
-            </p>
-            Título:<br/>
-            <input type="text" name="titulo" size="33" autocomplete="off" class="claro">
-            
-            <br/><br/>
-            Descrição:<br/>
-            <textarea name="descricao" class="caixa_descricao" rows="3" cols="35"></textarea>
-            <br/><br/><?php
-            if ($modo == "contra_relogio") {
-                ?>
-                Tempo total do questionário :<br/><br>
-                Minutos:
-                <input type="text" name="timer" size="1" value="0" class="tempo">
-                Segundos:
-                <input type="text" name="timer1" size="1" value="0" class="tempo">
-                <br/><br/>
-                <?php
-            } else if ($modo != "questionario"){
-                ?>
-                Tempo por pergunta:<br/><br>
-                Minutos:
-                <input type="text" name="timer" size="1" value="0" class="tempo">
-                Segundos:
-                <input type="text" name="timer1" size="1" value="0" class="tempo">
-                <br/><br/>
-                <?php
-            }
-            
-            if($modo != "questionario"){?>
-            Dificuldade:<br/>
-            <p>
-                <select name="dificuldade">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-            </p>
-            <?php
-            }
-            ?>
-            <input type='submit' name='submit' style="background: #3366ff" value='Inserir'>
-        </form>
-        <?php
+    $message = "";    
+    $my_id = $_SESSION['user_id'];
+    $modo = $_GET['modo'];
         $questionarios = get_all_questionarios($pdo);
         $existe = 0;
         if (isset($_POST['submit'])) {
@@ -168,9 +104,85 @@
             
         }
         if ($message != '') {
-            echo "<div class='erro'>$message</div>";
+            echo "<br><br><div class='erro'>$message</div>";
         }
         ?>
+    <div class='container'>
+        <h1>Introduza as Seguites Informações:<br></h1>
+        <?php
+        if ($modo == "contra_relogio") {
+            echo "<h2>Modo: Contra Relógio</h2>";
+        } else if ($modo == "morte_subita") {
+            echo "<h2>Modo: Morte Súbita</h2>";
+        } else if ($modo == "questionario") {
+            echo "<h2>Modo: Questionário</h2>";
+        } else if ($modo == "classico") {
+            echo "<h2>Modo: Clássico</h2>";
+        }
+        ?>
+        <form action="" method="post">
+            Acesso:<br/>
+            <p>
+                <select name="acesso">
+                    <option value="publico">Publico</option>
+                    <option value="privado">Privado</option>
+                </select>
+            </p>
+            Título:<br/>
+            <input type="text" name="titulo" size="33" value="<?php echo isset($_POST['titulo']) ? $_POST['titulo'] : ''; ?>" autocomplete="off" class="claro">
+            
+            <br/><br/>
+            Descrição:<br/>
+            <textarea name="descricao" class="caixa_descricao" rows="3" cols="35"><?php if(isset($_POST['descricao'])) {echo htmlentities($_POST['descricao']);}?></textarea>
+            <br/><br/><?php
+            if ($modo == "contra_relogio") {
+            ?>
+                Tempo total do questionário :<br/><br>
+            <?php
+            } else if ($modo != "questionario"){
+            ?>
+                Tempo por pergunta:<br/><br>
+            <?php
+            }
+            
+            if($modo != "questionario"){?>
+            Minutos:
+            <input type="text" name="timer" size="1" value="<?php echo isset($_POST['timer']) ? $_POST['timer'] : '0'; ?>" class="tempo">
+            Segundos:
+            <input type="text" name="timer1" size="1" value="<?php echo isset($_POST['timer1']) ? $_POST['timer1'] : '0'; ?>" class="tempo">
+            <br/><br/>
+            Dificuldade:<br/>
+            <p>
+                <select name="dificuldade">
+                <?php
+                    if(!isset($_POST['dificuldade']) || $_POST['dificuldade'] == '1'){
+                        ?>
+                        <option  selected="true" value="1">1</option>
+                        <option  value="2">2</option>
+                        <option  value="3">3</option>
+                        <?php
+                    }else if($_POST['dificuldade'] == '2'){
+                        ?>
+                        <option value="1">1</option>
+                        <option  selected="true" value="2">2</option>
+                        <option  value="3">3</option>
+                        <?php
+                    }else{
+                        ?>
+                        <option  value="1">1</option>
+                        <option  value="2">2</option>
+                        <option  selected="true" value="3">3</option>
+                        <?php
+                    }
+                ?>
+                </select>
+                <script type="text/javascript">document.getElementById('dificuldade').value = "<?php echo $_POST['dificuldade'];?>";</script>
+            </p>
+            <?php
+            }
+            ?>
+            <input type='submit' name='submit' style="background: #3366ff" value='Inserir'>
+        </form>
         <br><a href='introduzirQuestionarioModo.php' class='box'>Voltar</a>
     </div>
 </body>
