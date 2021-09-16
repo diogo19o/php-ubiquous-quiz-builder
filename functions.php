@@ -17,6 +17,24 @@ function logout(){
 	}
 }
 
+function authenticateUser($pdo,$username,$pwdHash){
+	try {
+		$sql = "SELECT * from users WHERE (nome=:nome AND password=:pwd)";
+		$statement = $pdo->prepare($sql);
+		$statement->bindParam(':nome', $username);
+		$statement->bindParam(':pwd', $pwdHash);
+		$statement->execute();
+		$users = $statement->fetchAll();
+
+		if(sizeof($users) == 1){
+			$_SESSION['user_id']=$users[0]["id"];
+			return true;
+		}else{
+			return false;
+		}
+	} catch (Exception $ex) { echo $ex->getMessage(); }
+}
+
 function get_resultados_by_questionario($pdo,$questionarioID){
     $statement = $pdo->prepare("SELECT * FROM `resultados` WHERE `QuestionarioID` = $questionarioID");
     $statement->execute();
