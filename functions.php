@@ -113,12 +113,16 @@ function create_database_connection(){
 	*/
 
 	//Remote MySQL DB
-	
+	/*
 	$host = 'sql11.freemysqlhosting.net';
 	$db = 'sql11436096';
 	$user = 'sql11436096';
 	$pass = 'VGSpMAFWWP';
-	
+	*/
+	$host = 'bfyyhg9ho46qpyjlhxil-mysql.services.clever-cloud.com';
+	$db = 'bfyyhg9ho46qpyjlhxil';
+	$user = 'uebqf9hs6drx09rw';
+	$pass = '28HLgo2q8Ib5E6dEKfbB';
 
 	$dsn = "mysql:host=$host;dbname=$db";
 
